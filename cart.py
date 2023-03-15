@@ -1,13 +1,27 @@
 from location import Location
 from status import Status
 
+import random
+
+# RANDOM_WALK = 30
+
+
+
+
 
 class Cart():
-    def __init__(self):
-        self.start_location = Location
-        self.goal_location = Location
-        self.status = Status
-        # self.path_plan = Path # This is where the path planning algorithm results should go
+    # def __init__(self):
+    start_location = Location
+    goal_location = Location
+    status = Status
+
+    # self.path_plan = Path # This is where the path planning algorithm results should go
+
+    # @wrapper
+
+    def update(self):
+        pass
+        
 
     def dropoff(self):
         pass
