@@ -42,7 +42,7 @@ def make_level(texture):
 
     level_parent.model.generate()
 
-make_level(load_texture('dia-tile-later-1.csv'))   # generate the level
+make_level(load_texture('platformer_tutorial_level'))   # generate the level
 
 camera.orthographic = True
 camera.position = (30/2,8)

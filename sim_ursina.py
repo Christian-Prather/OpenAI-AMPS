@@ -2,6 +2,8 @@ from ursina import *
 from ursina.prefabs.tilemap import Tilemap
 from person import Person
 from kiosk import Kiosk
+from cart import Cart
+
 import pandas as pd
 import pytmx
 
@@ -27,7 +29,7 @@ def gen_world():
     layer = tmxdata.get_layer_by_name('kiosks')
     for x, y, surf in layer.tiles():
         kiosk = Kiosk(model="quad", x=x-15, y=-y + 10,
-                       scale=(1, 1, 1), collider="box", color=color.blue)
+                      scale=(1, 1, 1), collider="box", color=color.blue)
         kiosks[kiosk.__hash__] = (kiosk.x, kiosk.y)
 
     print(layer.data)
@@ -35,6 +37,9 @@ def gen_world():
     for i in range(START_PEOPLE):
         person = Person(model="quad", scale=(0.5, 0.5, 0.5))
         active_people.append(person)
+
+    cart_1 = Cart(model="quad", scale=(1, 1, 1), color=color.orange)
+    # cart_2 = Cart(model="quad", scale=(1, 1, 1), color=color.orange, x = 4)
 
 
 def people_lifetime(life_counter):
