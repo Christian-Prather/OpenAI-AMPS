@@ -1,12 +1,37 @@
-from ursina import *
-from person import Person
+import pygame
+import sys
+from pytmx.util_pygame import load_pygame
 
-app = Ursina()
+pygame.init()
+screen = pygame.display.set_mode((1280, 1280))
+tmxdata = load_pygame('dia.tmx')
+sprite_group = pygame.sprite.Group()
 
-cart_1 = Person(model="quad", color=color.blue, scale=(0.3, 0.3, 0.3))
-cart_2 = Person(model="quad", color=color.red, scale=(0.3, 0.3, 0.3))
 
-cart_3 = Person(model="quad", color=color.pink, scale=(0.3, 0.3, 0.3))
-cart_4 = Person(model="quad", color=color.white, scale=(0.3, 0.3, 0.3))
+class Tile(pygame.sprite.Sprite):
+    def __init__(self, pos, surf, groups):
+        super().__init__(groups)
+        self.image = surf
+        self.rect = self.image.get_rect(topleft=pos)
 
-app.run()
+# for layer in tmxdata.visible_layers:
+#     print(layer)
+
+
+# Get tiles
+layer = tmxdata.get_layer_by_name('walls')
+for x, y, surf in layer.tiles():
+    Tile(pos=(x *64, y*64), surf=surf, groups=sprite_group)
+    print(x, y, surf)
+
+print(layer.data)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    screen.fill('black')
+    sprite_group.draw(screen)
+    pygame.display.update()
