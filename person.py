@@ -32,9 +32,6 @@ class Person(Entity):
         '''
             The loop thread logic that will update position and decide if this object should be killed or moved
         '''
-        # self.lifetime -= 1 * time.dt
-        # if self.lifetime <= 0:
-        #     self.disable()
         hit_info = raycast(origin=self.world_position, direction=self.direction,
                            distance=0.25, ignore=(self,), debug=True)
         if hit_info.hit:
